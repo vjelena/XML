@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Home page</title>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" th:href="@{js/bootstrap/css/bootstrap.min.css}"
+		  href="../../js/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript"
+			src="js/bootstrap/js/bootstrap.min.js"></script>
+</head>
+	<body>
+	<div class="container">
+		<h1>Dobrodošli!</h1>
+		<div class="navbar">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li><a th:href="@{/registration}" href="registration.html"> Registruj se </a></li>
+					<li><a th:href="@{/login}" href="login.html"> Uloguj se </a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	</body>
+</html>

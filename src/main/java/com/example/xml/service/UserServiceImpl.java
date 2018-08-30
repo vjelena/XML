@@ -19,43 +19,37 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public EndUser findOne(Long id) {
-		// TODO Auto-generated method stub
 		return userRepository.findById(id).get();
 	}
 
 	@Override
 	public List<EndUser> findAll() {
-		// TODO Auto-generated method stub
 		return userRepository.findAll();
 	}
 
 	@Override
-	public EndUser save(EndUser city) {
-		// TODO Auto-generated method stub
-		return userRepository.save(city);
+	public EndUser save(EndUser user) {
+		return userRepository.save(user);
 	}
 
 	@Override
-	public List<EndUser> save(List<EndUser> cities) {
-		// TODO Auto-generated method stub
-		return userRepository.saveAll(cities);
+	public List<EndUser> save(List<EndUser> users) {
+		return userRepository.saveAll(users);
 	}
 
 	@Override
 	public EndUser delete(Long id) {
-		// TODO Auto-generated method stub
-		EndUser city = userRepository.findById(id).get();
-		if(city == null){
+		EndUser user = userRepository.findById(id).get();
+		if(user == null){
 			throw new IllegalArgumentException("Tried to delete"
-					+ "non-existant city");
+					+ "non-existant user");
 		}
-		userRepository.delete(city);
-		return city;
+		userRepository.delete(user);
+		return user;
 	}
 
 	@Override
 	public void delete(List<Long> ids) {
-		// TODO Auto-generated method stub
 		for(Long id : ids){
 			this.delete(id);
 		}

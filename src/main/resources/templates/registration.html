@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{js/bootstrap/css/bootstrap.min.css}"
+          href="../../js/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript"
+            src="js/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+
+        <ul class="nav">
+            <li><a th:href="@{/}" href="index.html"> Pocetna </a></li>
+            <li><a th:href="@{/registration}" href="registration.html"> Registruj se </a></li>
+            <li><a th:href="@{/resetPasswordInit}" href="resetpassword.html"> Resetuj lozinku</a></li>
+            <li><a th:href="@{/login}" href="login.html"> Uloguj se </a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="container">
+    <div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title text-center">Registracija</div>
+            </div>
+
+            <p class="alert alert-success" th:if="${success}" th:text="${success}"></p>
+
+            <div class="panel-body" style="padding-top:30px">
+                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                <form action="#" th:action="@{/registration}" th:object="${registration}" method="post">
+
+                    <div class="input-group" style="margin-bottom: 25px">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="email" class="form-control" name="email" value="" placeholder="Username" th:field="*{username}" required>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 25px">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" name="lozinka1" placeholder=Lozinka th:field="*{newPassword}" required>
+                    </div>
+                    <li th:errors="*{newPassword}" />
+
+                    <div class="input-group" style="margin-bottom: 25px">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" name="lozinka2" placeholder="Ponovo unesite lozinku" th:field="*{repeatNewPassword}" required>
+                    </div>
+                    <li th:errors="*{repeatNewPassword}" />
+
+                    <div class="input-group" style="margin-bottom: 25px">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="ime" placeholder="Ime" th:field="*{name}" required>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 25px">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="prezime" placeholder="Prezime" th:field="*{lastName}" required>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 25px">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                        <input type="number" class="form-control" name="brojTelefona" placeholder="Broj telefona" th:field="*{phoneNumber}" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                            <input type="submit" class="btn btn-info" style="float:right" value="Registruj se">
+                            
+                        </div>
+                    </div>
+                     <ul>
+                        <li th:each="err : ${#fields.errors('global')}" th:text="${err}" />
+
+                    </ul>   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
