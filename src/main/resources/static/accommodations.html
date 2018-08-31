@@ -22,10 +22,47 @@
 					$("#accTable").append(newRow)
 				}
 			});
+		
+			$("#searchBtn").click(function() {
+				event.preventDefault();
+	            var place = $("#searchForm [name='place']").val()
+	            var numPersons = $("#searchForm [name='numPersons']").val()
+	            console.log(place)
+	            $.ajax({
+					url: "accommodations/search?place=" + place + "&numPersons=" + numPersons,
+					type: "GET",
+					datatype: "json",
+					success: function(data) {
+						console.log(place)
+						$("#accTable").empty()
+						headers = "<tr class=\"header\"><th>Naziv</th>"
+								+ "<th>Adresa</th>"
+								+ "<th width=20px>Grad</th></tr>"
+						$("#accTable").append(headers)
+						for(i=0; i<data.length; i++) {
+							newRow = 
+								"<tr>"
+									+ "<td>" + data[i].name + "</td>"
+									+ "<td>" + data[i].address + "</td>"
+									+ "<td>" + data[i].place + "</td>"
+								+ "</tr>"
+							$("#accTable").append(newRow)
+						}
+					}
+    	        });
+			});	
 		});
 		</script>
 	</head>
 	<body>
+		<h1>Pretraga</h1>
+		<form id="searchForm">
+			<input type="text" placeholder="Mesto" id="place" name="place">
+			<input type="date" placeholder="Od" id="from" name="from">
+			<input type="date" placeholder="Do" id="to" name="to">
+			<input type="number" placeholder="Broj osoba" id="numPersons" name="numPersons">
+			<input type="submit" value="OK" id="searchBtn">
+		</form>
 		<h1>Dostupni smeštaji</h1>
 		<table id="accTable" class="table">
 			<tr class="header">
