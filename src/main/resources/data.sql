@@ -10,3 +10,8 @@ insert into agent (name, last_name, number, address, username, password) values 
 insert into extra(name) value ('TV')
 insert into extra(name) value ('Klima')
 insert into extra(name) value ('WiFi')*/
+insert into admin (username, password) values ('admin', 'admin')
+
+insert into comment(content, status) value ('komentar 1', 0)
+insert into comment(content, status) value ('komentar 2', 0)
+insert into comment(content, status) value ('komentar 3', 1)
