@@ -6,21 +6,18 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-public class EndUser implements Serializable{
+public class Agent implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2303283871457607238L;
+	private static final long serialVersionUID = 5744608235561893832L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,14 +32,19 @@ public class EndUser implements Serializable{
 	@Column
 	private String address;
 	
-	@Column 
-	private int status;
+	@Column
+	private String number;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "endUser")
-	@JsonIgnore
-	private Set<Reservation> reservationList = new HashSet<Reservation>();
+	@Column
+	private String username;
 	
-	public EndUser() {
+	@Column
+	private String password;
+	
+	@OneToMany
+	private Set<Accommodation> accommodationList = new HashSet<Accommodation>();
+	
+	public Agent() {
 		
 	}
 	
@@ -79,24 +81,42 @@ public class EndUser implements Serializable{
 		this.address = address;
 	}
 
-	public Set<Reservation> getReservationList() {
-		return reservationList;
+	public String getNumber() {
+		return number;
 	}
 
-	public void setReservationList(Set<Reservation> reservationList) {
-		this.reservationList = reservationList;
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public Set<Accommodation> getAccommodationList() {
+		return accommodationList;
+	}
+
+	public void setAccommodationList(Set<Accommodation> accommodationList) {
+		this.accommodationList = accommodationList;
 	}
 
 
-	public int getStatus() {
-		return status;
+	public String getUsername() {
+		return username;
 	}
 
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	
 	
 }
