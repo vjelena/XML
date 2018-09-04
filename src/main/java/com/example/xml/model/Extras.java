@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.example.xml.model.Accommodation;
 
 @Entity
 public class Extras implements Serializable{
@@ -17,6 +20,9 @@ public class Extras implements Serializable{
 	
 	@Column
 	private String name;
+	
+	/*@ManyToOne(optional = false)
+	private Accommodation accommodation;*/
 
 	public Extras() {
 		
@@ -37,6 +43,14 @@ public class Extras implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	/*public Accommodation getAccommodation() {
+		return accommodation;
+	}
+
+	public void setAccommodation(Accommodation accommodation) {
+		this.accommodation = accommodation;
+	}*/
 	
 	
 }

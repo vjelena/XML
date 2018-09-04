@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -59,7 +60,7 @@ public class Accommodation implements Serializable{
 	@OneToMany
 	private Set<PriceDateSchedule> priceDateSchedule = new HashSet<PriceDateSchedule>();
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY/*, mappedBy="accommodation"*/)
 	@JsonIgnore
 	private Set<Extras> extras = new HashSet<Extras>();
 	
