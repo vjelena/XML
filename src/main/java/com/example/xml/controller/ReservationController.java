@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.xml.model.EndUser;
 import com.example.xml.model.Reservation;
+import com.example.xml.model.ReservationDTO;
+import com.example.xml.service.AccommodationService;
 import com.example.xml.service.ReservationService;
 
 @Controller
@@ -22,6 +24,9 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationService reservationService;
+	
+	@Autowired
+	private AccommodationService accommodationService;
 	
 	@RequestMapping(value="/getReservations", method=RequestMethod.GET)
 	public ResponseEntity<List<Reservation>> getReservations(HttpServletRequest request) {
@@ -41,8 +46,14 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="/addReservation", method=RequestMethod.POST)
-	public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation) {
-		Reservation newRes = reservationService.save(reservation);
+	public ResponseEntity<Reservation> addReservation(@RequestBody ReservationDTO reservationDto, HttpServletRequest request) {
+		Reservation res = new Reservation();
+		res.setStatus(1);
+		res.setEndUser((EndUser) request.getSession().getAttribute("aktivanKorisnik"));
+		res.setDateFrom(reservationDto.getDateFrom());
+		res.setDateTo(reservationDto.getDateTo());
+		res.setAccommodation(accommodationService.findOne(reservationDto.getAccommodation()));
+		Reservation newRes = reservationService.save(res);
 		return new ResponseEntity<Reservation>(newRes, HttpStatus.OK);
 	}
 	
