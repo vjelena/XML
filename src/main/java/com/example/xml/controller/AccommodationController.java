@@ -35,10 +35,12 @@ public class AccommodationController {
 	}
 	
 	//pretraga
-	@RequestMapping(value = "search", method = RequestMethod.GET)
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ResponseEntity<List<Accommodation>> search(@RequestParam("place") String place, @RequestParam("numPersons") int numPersons) {
+		System.out.println("usao u kontroler");
 		List<Accommodation> accommodations = accommodationRepository.findByPlaceIgnoreCaseContaining(place);
 		List<Accommodation> result = new ArrayList<Accommodation>();
+		
 		for(Accommodation acc : accommodations) {
 			if(acc.getNumPersons() >= numPersons) {
 				result.add(acc);

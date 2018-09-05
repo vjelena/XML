@@ -35,6 +35,12 @@ public class EndUser implements Serializable{
 	@Column
 	private String address;
 	
+	@Column
+	private String email;
+	
+	@Column
+	private String password;
+	
 	@Column 
 	private int status;
 	
@@ -95,6 +101,26 @@ public class EndUser implements Serializable{
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
